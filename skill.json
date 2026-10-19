@@ -1,0 +1,75 @@
+{
+  "name": "genpark-agentic-commerce-b2b-contract-sla-penalty-arbiter-skill",
+  "title": "B2B Contract SLA Delivery Penalty & Liquidation Arbiter Skill",
+  "version": "1.0.0",
+  "description": "Enterprise vendor procurement contract audit, service level agreement (SLA) uptime and latency breach arbitration, automated liquidated damages credit calculation, and audit-ready claim compilation. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "organization": {
+    "name": "GenPark Inc.",
+    "url": "https://www.genpark.ai",
+    "linkedin": "https://www.linkedin.com/company/92955550"
+  },
+  "mcp_version": "2024-11-05",
+  "category": "agentic-commerce",
+  "tools": [
+    {
+      "name": "calculate_sla_downtime_penalty",
+      "description": "Calculate monthly SLA service fee credits and statutory liquidated damages resulting from vendor outage or delivery breaches.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "vendor_name": {
+            "type": "string"
+          },
+          "monthly_contract_value_usd": {
+            "type": "number"
+          },
+          "contracted_uptime_pct": {
+            "type": "number",
+            "description": "e.g. 99.95 for 99.95%"
+          },
+          "actual_recorded_uptime_pct": {
+            "type": "number"
+          },
+          "total_outage_minutes": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vendor_name",
+          "monthly_contract_value_usd",
+          "contracted_uptime_pct",
+          "actual_recorded_uptime_pct",
+          "total_outage_minutes"
+        ]
+      }
+    },
+    {
+      "name": "generate_sla_credit_demand_dossier",
+      "description": "Synthesize a formal SLA breach invoice debit note and compensation demand referencing contractual master service agreement (MSA) clauses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "vendor_name": {
+            "type": "string"
+          },
+          "penalty_credit_usd": {
+            "type": "number"
+          },
+          "outage_summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "claim_id",
+          "vendor_name",
+          "penalty_credit_usd",
+          "outage_summary"
+        ]
+      }
+    }
+  ]
+}
